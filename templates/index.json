@@ -9,12 +9,19 @@
  */
 {
   "sections": {
-    "hello-world": {
-      "type": "hello-world",
-      "settings": {}
-    },
     "hero": {
       "type": "hero",
+      "settings": {
+        "hero_background_image": "shopify://shop_images/hero.jpg",
+        "heading": "Locally Grown, Farm FreshFlowers & Goods",
+        "primary_button_text": "Shop",
+        "primary_button_link": "",
+        "secondary_button_text": "Contact",
+        "secondary_button_link": ""
+      }
+    },
+    "hello-world": {
+      "type": "hello-world",
       "settings": {}
     }
   },
