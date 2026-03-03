@@ -1,7 +1,9 @@
 /** Critical CSS for the theme. This file is included on every page. */
 
 /* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
 }
@@ -55,6 +57,14 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-name-title);
   margin-top: 0;
 }
@@ -75,9 +85,15 @@ p:empty {
 
 /** Theme styles below */
 body {
-  font-family: var(--font-primary--family);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  font-family: var(--font-family-name-base), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-black);
+}
+
+p {
+    margin: 0 0 16px;
 }
 
 /** Section layout utilities */
@@ -116,32 +132,4 @@ body {
 /* Child elements that use the full-width utility class span the entire viewport. */
 .shopify-section > .full-width {
   grid-column: 1 / -1;
-}
-
-
-
-/* ======================================== */
-/* -------------- Custom CSS -------------- */
-/* ======================================== */
-
-/* -------------- Fonts -------------- */
-
-/* Gatwick Bold */
-@font-face {
-  font-family: 'Gatwick Bold';
-  src: url('gatwick-bold-webfont.woff2') format('woff2'),
-       url('gatwick-bold-webfont.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Maison Neue Mono */
-@font-face {
-  font-family: 'Maison Neue Mono';
-  src: url('maisonneue-mono-webfont.woff2') format('woff2'),
-       url('maisonneue-mono-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
