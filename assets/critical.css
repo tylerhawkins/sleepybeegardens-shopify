@@ -55,6 +55,8 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  font-family: var(--font-family-name-title);
+  margin-top: 0;
 }
 
 p:empty {
@@ -116,9 +118,30 @@ body {
   grid-column: 1 / -1;
 }
 
-/* ---------- Custom CSS ---------- */
 
-:root {
-  --color-white: #FFFFFF;
-  --color-black: #000000;
+
+/* ======================================== */
+/* -------------- Custom CSS -------------- */
+/* ======================================== */
+
+/* -------------- Fonts -------------- */
+
+/* Gatwick Bold */
+@font-face {
+  font-family: 'Gatwick Bold';
+  src: url('fonts/gatwick-bold-webfont.woff2') format('woff2'),
+       url('fonts/gatwick-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Maison Neue Mono */
+@font-face {
+  font-family: 'Maison Neue Mono';
+  src: url('fonts/maisonneue-mono-webfont.woff2') format('woff2'),
+       url('fonts/maisonneue-mono-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
