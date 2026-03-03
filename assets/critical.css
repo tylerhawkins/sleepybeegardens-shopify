@@ -115,3 +115,10 @@ body {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+/* ---------- Custom CSS ---------- */
+
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+}
