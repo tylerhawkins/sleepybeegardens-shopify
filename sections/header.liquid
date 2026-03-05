@@ -1,4 +1,7 @@
 <header>
+  <div class="menu">
+    {{ 'icon-menu.svg' | inline_asset_content }}
+  </div>
   <h2 class="header__title">
     {{ 'SBG' | link_to: routes.root_url }}
   </h2>
@@ -21,21 +24,20 @@
 
       {{ 'icon-cart.svg' | inline_asset_content }}
     </a>
-
-    <a href="#" class="menu">
-      {{ 'icon-menu.svg' | inline_asset_content }}
-    </a>
   </div>
 </header>
 
 {% stylesheet %}
   .shopify-section-group-header-group {
     position: absolute;
-    top: 0;
+    top: 32px;
     left: 0;
     right: 0;
-    padding: 32px;
     z-index: 500;
+
+    @media (max-width: 959px) {
+      top: 16px;
+    }
   }
 
   header {
@@ -53,9 +55,17 @@
       color: var(--color-white);
     }
 
+    svg {
+      width: 2rem;
+    }
+
     .header__menu {
       display: flex;
       gap: 2rem;
+
+      @media (max-width: 959px) {
+        display: none;
+      }
 
       a {
         display: inline-block;
@@ -83,6 +93,10 @@
       display: flex;
       gap: 1rem;
 
+      @media (max-width: 959px) {
+        gap: .5rem;
+      }
+
       a {
         display: inline-block;
 
@@ -92,7 +106,6 @@
         }
 
         svg {
-          width: 2rem;
           transform-style: preserve-3d;
           transition: transform 0.3s ease-in-out;
         }
@@ -101,11 +114,11 @@
           transform: rotateY(180deg);
         }
       }
+    }
 
-      @media (min-width: 960px) {
-        .menu {
-          display: none;
-        }
+    @media (min-width: 960px) {
+      .menu {
+        display: none;
       }
     }
   }
