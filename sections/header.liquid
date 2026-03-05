@@ -48,20 +48,8 @@
     color: var(--color-white);
 
     a {
-      position: relative;
       text-decoration: none;
       color: var(--color-white);
-
-      sup {
-        position: absolute;
-        left: 100%;
-        overflow: hidden;
-        max-width: var(--page-margin);
-      }
-    }
-
-    svg {
-      width: 2rem;
     }
 
     .header__menu {
@@ -95,11 +83,21 @@
       gap: 1rem;
 
       a {
+        position: relative;
         display: inline-block;
-        transform-style: preserve-3d;
-        transition: transform 0.3s ease-in-out;
 
-        &:hover {
+        sup {
+          position: absolute;
+          left: 100%;
+        }
+
+        svg {
+          width: 2rem;
+          transform-style: preserve-3d;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover svg {
           transform: rotateY(180deg);
         }
       }
