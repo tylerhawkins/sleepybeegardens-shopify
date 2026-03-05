@@ -22,11 +22,17 @@
     },
     "intro": {
       "type": "intro",
-      "settings": {}
+      "settings": {
+        "intro_heading": "We're a small, locally owned flower farm in Arvada, Colorado",
+        "intro_text": "From Dahlias to Snapdragons, and everything in-between, we specialize in growing beautiful, organic cut flowers to be used for any and all occassions!"
+      }
     },
     "featured": {
       "type": "featured",
-      "settings": {}
+      "settings": {
+        "featured_heading": "Featured Flowers",
+        "featured_collection": "frontpage"
+      }
     },
     "hello-world": {
       "type": "hello-world",
