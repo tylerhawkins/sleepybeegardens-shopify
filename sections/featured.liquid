@@ -3,25 +3,99 @@
     <div class="wave-content">
         <h2>{{ section.settings.featured_heading }}</h2>
     
-        {% if section.settings.collection != blank %}
-            <div class="products">
-                {% for product in section.settings.collection.products limit: 4 %}
-                <div class="product-card">
-                    <a href="{{ product.url }}">
-                        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" />
-                        <h3>{{ product.title }}</h3>
-                        <p>{{ product.price | money }}</p>
-                    </a>
+        {% if section.settings.featured_collection != blank %}
+            <div class="shopify-section">
+                <div>
+                    <div class="swiper flower-swiper">
+                        <div class="swiper-wrapper">
+                            {% for product in section.settings.featured_collection.products limit: 4 %}
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <a href="{{ product.url }}">
+                                        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" />
+                                        <div class="product-details">
+                                            <h3>{{ product.title }}</h3>
+                                            <p>{{ product.price | money }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
-                {% endfor %}
             </div>
         {% endif %}
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".flower-swiper", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                }
+            });
+        </script>
     </div>
 </div>
 
 {% stylesheet %}
   .featured {
     text-align: center;
+
+    h2 {
+        margin-bottom: 32px;
+    }
+
+    .swiper {
+        padding-bottom: 48px;
+        --swiper-pagination-color: var(--color-white);
+    }
+
+    .swiper-slide {
+        text-align: center;
+
+        img {
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 24px;
+        }
+
+        a {
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        .product-card {
+            display: inline-block;
+            position: relative;
+
+            &:hover {
+                .product-details {
+                    padding-bottom: 72px;
+                }
+            }
+        }
+
+        .product-details {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 24px 0;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.8) 100%
+            );
+            transition: all 0.3s ease-in-out;
+        }
+    }
   }
 {% endstylesheet %}
 
