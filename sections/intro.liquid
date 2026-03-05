@@ -1,0 +1,40 @@
+<section class="intro">
+    <h2>{{ section.settings.intro_heading }}</h2>
+    <p>{{ section.settings.intro_text }}</p>
+</section>
+
+{% stylesheet %}
+  section.intro {
+    padding-top: 64px;
+    padding-bottom: 64px;
+
+    h2 {
+        margin-bottom: 0.83em;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Intro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Intro Heading",
+      "default": "We're a small, locally owned flower farm in Arvada, Colorado"
+    },
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Intro Text",
+      "default": "From Dahlias to Snapdragons, and everything in-between, we specialize in growing beautiful, organic cut flowers to be used for any and all occassions!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intro"
+    }
+  ]
+}
+{% endschema %}

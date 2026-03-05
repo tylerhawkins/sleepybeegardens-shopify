@@ -20,6 +20,14 @@
         "secondary_button_link": ""
       }
     },
+    "intro": {
+      "type": "intro",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured",
+      "settings": {}
+    },
     "hello-world": {
       "type": "hello-world",
       "settings": {}
@@ -27,6 +35,8 @@
   },
   "order": [
     "hero",
+    "intro",
+    "featured",
     "hello-world"
   ]
 }
