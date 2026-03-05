@@ -34,8 +34,8 @@
         "featured_collection": "frontpage"
       }
     },
-    "hello-world": {
-      "type": "hello-world",
+    "meet": {
+      "type": "meet",
       "settings": {}
     }
   },
@@ -43,6 +43,6 @@
     "hero",
     "intro",
     "featured",
-    "hello-world"
+    "meet"
   ]
 }

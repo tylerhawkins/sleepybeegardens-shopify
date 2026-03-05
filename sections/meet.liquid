@@ -1,0 +1,57 @@
+<section class="meet">
+    {% if section.settings.owner_image %}
+      <div class="img-wrap">
+        {{ section.settings.owner_image | image_url: width: 500 | image_tag }}
+      </div>
+    {% endif %}
+    <div class="text-wrap">
+      <h2>{{ section.settings.owner_heading }}</h2>
+      <p>{{ section.settings.owner_text }}</p>
+    </div>
+</section>
+
+{% stylesheet %}
+  .meet {
+    display: flex;
+    column-gap: 32px;
+    margin-bottom: 64px;
+
+    .img-wrap {
+      flex: 0 0 50%;
+      max-width: 500px;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Meet The Owner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "owner_image",
+      "label": "Owner Image"
+    },
+    {
+      "type": "text",
+      "id": "owner_heading",
+      "label": "Owner Heading",
+      "default": "Meet The Owner"
+    },
+    {
+      "type": "text",
+      "id": "owner_text",
+      "label": "Owner Text",
+      "default": "Hello world! My name Christina, aka Farmer Stina. I'm the founder, farmer and designer of Sleepy Bee Gardens.<br/><br/>Rain barrels. Utters are weathervane foal est. Mouse soybeans sweet corn hogs llamas or oink oink wind. Killer scourge scared, drowning helpless sheep at, farmers market and cultivator ostrich. In quilt yearlings, gobblers pumpkin are pork.<br/><br/>Pig beef, sheep rose garden sage, in pitch fork sunflower cowpies mice. In quilt yearlings, gobblers pumpkin are porky pig beef, sheep rose garden."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Meet The Owner"
+    }
+  ]
+}
+{% endschema %}
