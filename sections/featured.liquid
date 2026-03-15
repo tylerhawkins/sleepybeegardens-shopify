@@ -1,24 +1,24 @@
 <div class="featured wave-divider full-width">
     <div class="wave-content">
         <h2>{{ section.settings.featured_heading }}</h2>
-    
+        
         {% if section.settings.featured_collection != blank %}
             <div class="shopify-section">
                 <div>
                     <div class="swiper flower-swiper">
                         <div class="swiper-wrapper">
                             {% for product in section.settings.featured_collection.products limit: 4 %}
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <a href="{{ product.url }}">
-                                        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" />
-                                        <div class="product-details">
-                                            <h3>{{ product.title }}</h3>
-                                            <p>{{ product.price | money }}</p>
-                                        </div>
-                                    </a>
+                                <div class="swiper-slide">
+                                    <div class="product-card">
+                                        <a href="{{ product.url }}">
+                                            <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" />
+                                            <div class="product-details">
+                                                <h3>{{ product.title }}</h3>
+                                                <p>{{ product.price | money }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                             {% endfor %}
                         </div>
                         <div class="swiper-pagination"></div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         {% endif %}
-
+        
         <!-- Initialize Swiper -->
         <script>
             var swiper = new Swiper(".flower-swiper", {
@@ -51,43 +51,43 @@
 </div>
 
 {% stylesheet %}
-  .featured {
+.featured {
     text-align: center;
-
+    
     h2 {
         margin-bottom: 32px;
     }
-
+    
     .swiper {
         padding-bottom: 48px;
         --swiper-pagination-color: var(--color-white);
     }
-
+    
     .swiper-slide {
         text-align: center;
-
+        
         img {
             display: inline-block;
             vertical-align: top;
             border-radius: 24px;
         }
-
+        
         a {
             color: var(--color-white);
             text-decoration: none;
         }
-
+        
         .product-card {
             display: inline-block;
             position: relative;
-
+            
             &:hover {
                 .product-details {
                     padding-bottom: 72px;
                 }
             }
         }
-
+        
         .product-details {
             position: absolute;
             left: 0;
@@ -104,29 +104,29 @@
             transition: all 0.3s ease-in-out;
         }
     }
-  }
+}
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Featured",
-  "settings": [
-    {
-      "type": "text",
-      "id": "featured_heading",
-      "label": "Featured Heading",
-      "default": "Featured Flowers"
-    },
-    {
-      "type": "collection",
-      "id": "featured_collection",
-      "label": "Featured Collection"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Featured"
-    }
-  ]
+    "name": "Featured",
+    "settings": [
+        {
+            "type": "text",
+            "id": "featured_heading",
+            "label": "Featured Heading",
+            "default": "Featured Flowers"
+        },
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Featured Collection"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured"
+        }
+    ]
 }
 {% endschema %}
