@@ -1,39 +1,101 @@
-<footer>
-    <div class="footer__copyright">
-        &copy;
-        {{ 'now' | date: '%Y' }}
-        {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-    </div>
-
-    <div class="footer__links">
-        {% for link in section.settings.menu.links %}
-            {{ link.title | link_to: link.url }}
-        {% endfor %}
-    </div>
-
-    <div class="footer__payment">
-        {% if section.settings.show_payment_icons %}
-            {% for type in shop.enabled_payment_types %}
-                {{ type | payment_type_svg_tag }}
-            {% endfor %}
-        {% endif %}
-    </div>
-</footer>
+<div class="footer-wrap full-width shopify-section">
+    <footer>
+        <div class="footer-content">
+            <div class="newsletter">
+                <p>Join our newsletter and stay up to date on all things SBG!</p>
+                <form method="post" class="form">
+                    <fieldset>
+                        <div class="field">
+                            <!-- <label for="newsletter-email">Email</label> -->
+                            <input type="text" name="newsletter-email" id="newsletter-email" />
+                        </div>
+                    </fieldset>
+                    <div class="actions">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__links">
+                <ul>
+                {% for link in section.settings.menu.links %}
+                    <li>{{ link.title | link_to: link.url }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="footer__socials">
+                <a href="https://www.instagram.com/sleepybeegardens/" target="_blank">{{ 'icon-instagram.svg' | inline_asset_content }}</a>
+                <a href="https://www.facebook.com/profile.php?id=61588009434616" target="_blank">{{ 'icon-facebook.svg' | inline_asset_content }}</a>
+            </div>
+        </div>
+        
+        <div class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}. All Rights Reserved</div>
+    </footer>
+</div>
 
 {% stylesheet %}
+    .shopify-section-group-footer-group {
+        position: relative;
+        color: var(--color-white);
+
+        &::before {
+            content: '';
+            display: block;
+            grid-column: 1 / -1;
+            height: 60px;
+            background: var(--color-orange);
+            -webkit-clip-path: url(#solid-waves-angle-top-down);
+            clip-path: url(#solid-waves-angle-top-down);
+            margin-left: -2px;
+        }
+
+        .footer-wrap {
+            background: var(--color-orange);
+        }
+    }
+
     footer {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-    }
-    footer a {
-        text-decoration: none;
-        color: var(--color-foreground);
-    }
-    footer .footer__links,
-    footer .footer__payment {
-        display: flex;
-        gap: 1rem;
+        padding: 24px;
+
+        svg {
+            width: 2em;
+            color: white;
+        }
+
+        a {
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            column-gap: 64px;
+            margin-bottom: 32px;
+        }
+
+        .newsletter {
+            flex: 1;
+        }
+
+        .footer__links {
+            flex: 0 0 400px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li:not(:last-child) {
+                    margin-bottom: 8px;
+                }
+            }
+        }
+
+        .footer__socials {
+            display: flex;
+            column-gap: 16px;
+            align-items: flex-start;
+            flex: 0 0 auto;
+        }
     }
 {% endstylesheet %}
 
@@ -50,7 +112,7 @@
         "type": "checkbox",
         "id": "show_payment_icons",
         "label": "t:labels.show_payment_icons",
-        "default": true
+        "default": false
     }
   ]
 }
