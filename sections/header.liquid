@@ -39,7 +39,7 @@
 
     .shopify-section-group-header-group {
         margin-top: 24px;
-        margin-bottom: 24px;
+        margin-bottom: 48px;
 
         @media (max-width: 959px) {
             margin-top: 16px;
@@ -55,79 +55,79 @@
         padding: 16px 24px;
         color: var(--color-white);
 
-    a {
-        position: relative;
-        text-decoration: none;
-        color: var(--color-white);
-    }
-
-    svg {
-        width: 2rem;
-    }
-
-    .header__menu {
-        display: flex;
-        gap: 2rem;
-
-        @media (max-width: 959px) {
-        display: none;
-        }
-
         a {
-        display: inline-block;
-        font-size: 18px;
-
-        &::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--color-white);
-            transition: transform 0.2s ease-out;
+            position: relative;
+            text-decoration: none;
+            color: var(--color-white);
         }
 
-        &:hover::after {
-            transform: scaleX(1);
-        }
-        }
-    }
-
-    .header__icons {
-        display: flex;
-        gap: 1rem;
-
-        @media (max-width: 959px) {
-            gap: .5rem;
+        svg {
+            width: 2rem;
         }
 
-        a {
-            display: inline-block;
+        .header__menu {
+            display: flex;
+            gap: 2rem;
 
-            sup {
-                position: absolute;
-                left: 100%;
+            @media (max-width: 959px) {
+                display: none;
             }
 
-            svg {
-                transform-style: preserve-3d;
-                transition: transform 0.3s ease-in-out;
+            a {
+                display: inline-block;
+                font-size: 18px;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    transform: scaleX(0);
+                    height: 2px;
+                    bottom: -2px;
+                    left: 0;
+                    background-color: var(--color-white);
+                    transition: transform 0.2s ease-out;
+                }
+
+                &:hover::after {
+                    transform: scaleX(1);
+                }
+            }
+        }
+
+        .header__icons {
+            display: flex;
+            gap: 1rem;
+
+            @media (max-width: 959px) {
+                gap: .5rem;
             }
 
-            &:hover svg {
-                transform: rotateY(180deg);
+            a {
+                display: inline-block;
+
+                sup {
+                    position: absolute;
+                    left: 100%;
+                }
+
+                svg {
+                    transform-style: preserve-3d;
+                    transition: transform 0.3s ease-in-out;
+                }
+
+                &:hover svg {
+                    transform: rotateY(180deg);
+                }
+            }
+        }
+
+        @media (min-width: 960px) {
+            .menu {
+                display: none;
             }
         }
     }
-
-    @media (min-width: 960px) {
-        .menu {
-            display: none;
-        }
-    }
-  }
 {% endstylesheet %}
 
 {% schema %}

@@ -9,9 +9,18 @@
 
 {{ page.content }}
 
+{% for block in section.blocks %}
+  {% render block %}
+{% endfor %}
+
 {% schema %}
 {
   "name": "t:general.page",
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}

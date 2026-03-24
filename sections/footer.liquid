@@ -11,7 +11,7 @@
                         </div>
                     </fieldset>
                     <div class="actions">
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="button">Submit</button>
                     </div>
                 </form>
             </div>
@@ -45,7 +45,7 @@
             background: var(--color-orange);
             -webkit-clip-path: url(#solid-waves-angle-top-down);
             clip-path: url(#solid-waves-angle-top-down);
-            margin-left: -2px;
+            margin-left: -4px;
         }
 
         .footer-wrap {
@@ -85,7 +85,28 @@
                 padding: 0;
 
                 li:not(:last-child) {
-                    margin-bottom: 8px;
+                    margin-bottom: 16px;
+                }
+
+                a {
+                    display: inline-block;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        transform: scaleX(0);
+                        height: 2px;
+                        bottom: -2px;
+                        left: 0;
+                        background-color: var(--color-white);
+                        transition: transform 0.2s ease-out;
+                    }
+
+                    &:hover::after {
+                        transform: scaleX(1);
+                    }
                 }
             }
         }
@@ -95,6 +116,19 @@
             column-gap: 16px;
             align-items: flex-start;
             flex: 0 0 auto;
+
+            a {
+                display: inline-block;
+
+                svg {
+                    transform-style: preserve-3d;
+                    transition: transform 0.3s ease-in-out;
+                }
+
+                &:hover svg {
+                    transform: rotateY(180deg);
+                }
+            }
         }
     }
 {% endstylesheet %}

@@ -31,12 +31,18 @@
     {{ content_for_header }}
   </head>
 
-  <body class="template-{{ template }} page-{{ request.path | remove: '/' | split: '/' | last | default: 'home' }}">
+  <body class="template-{{ template }} page-{{ request.path | remove_first: '/' | replace: '/', '-' | default: 'home' }}">
     {% sections 'header-group' %}
 
     <main>{{ content_for_layout }}</main>
 
     {% render 'clip-paths' %}
+
+    <style>
+        :root {
+            --bg-sbg: url('{{ 'bg.svg' | asset_url }}');
+        }
+    </style>
 
     {% sections 'footer-group' %}
   </body>

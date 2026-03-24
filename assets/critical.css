@@ -85,6 +85,7 @@ p:empty {
 
 main {
   flex: 1;
+  margin-bottom: 48px;
 }
 
 /** Theme styles below */
