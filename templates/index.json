@@ -31,7 +31,7 @@
       "type": "featured",
       "settings": {
         "featured_heading": "Featured Flowers",
-        "featured_collection": "frontpage"
+        "featured_collection": "featured"
       }
     },
     "meet": {
