@@ -10,22 +10,21 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 <div class="collection-products">
     {% paginate collection.products by 20 %}
         {% for product in collection.products %}
-            <div class="collection-product">
+            <a class="collection-product" href="{{ product.url }}">
                 {% if product.featured_image %}
                     {% render 'image',
                         class: 'collection-product__image',
                         image: product.featured_image,
-                        url: product.url,
                         width: 400,
-                        height: 400,
                         crop: 'center'
                     %}
                 {% endif %}
+
                 <div class="collection-product__content">
-                    <p>{{ product.title | escape | link_to: product.url }}</p>
+                    <h3>{{ product.title }}</h3>
                     <p>{{ product.price | money }}</p>
                 </div>
-            </div>
+            </a>
         {% endfor %}
         
         {{ paginate | default_pagination }}
@@ -35,7 +34,40 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% stylesheet %}
 .collection-products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 16px;
+}
+
+.collection-product {
+    color: var(--color-white);
+    text-align: center;
+    position: relative;
+
+    &:hover {
+        .collection-product__content {
+            padding-bottom: 72px;
+        }
+    }
+
+    .collection-product__image {
+        border-radius: 24px;
+    }
+
+    .collection-product__content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 24px 0;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0.8) 100%
+        );
+        transition: all 0.3s ease-in-out;
+    }
 }
 {% endstylesheet %}
 
