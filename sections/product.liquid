@@ -7,7 +7,7 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
 <div class="product-page-wrap">
     <div class="product-images">
-        <div class="swiper product-images-swiper">
+        <div class="swiper swiper-main product-images-swiper">
             <div class="swiper-wrapper">
                 {% for image in product.images %}
                     <div class="swiper-slide">
@@ -15,16 +15,38 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
                     </div>
                 {% endfor %}
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="swiper swiper-thumb product-images-thumb-swiper" thumbsSlider="">
+            <div class="swiper-wrapper">
+                {% for image in product.images %}
+                    <div class="swiper-slide">
+                        {% render 'image', class: 'product-image-thumb', image: image %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <!-- Initialize Swiper -->
         <script>
+            var thumbSwiper = new Swiper(".product-images-thumb-swiper", {
+                loop: true,
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+            });
             var swiper = new Swiper(".product-images-swiper", {
-                slidesPerView: 1,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
+                //slidesPerView: 1,
+                loop: true,
+                //spaceBetween: 10,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                thumbs: {
+                    swiper: thumbSwiper,
                 },
             });
         </script>
@@ -90,6 +112,10 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
         .product-image img {
             border-radius: 24px;
+        }
+
+        .product-image-thumb img {
+            border-radius: 8px;
         }
     }
 

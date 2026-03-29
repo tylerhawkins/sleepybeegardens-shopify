@@ -150,6 +150,35 @@ form {
 /* ----------------- Swiper ----------------- */
 
 .swiper {
-    padding-bottom: 48px !important;
     --swiper-pagination-color: var(--color-green);
+    --swiper-navigation-color: var(--color-white);
+
+    &:not(.swiper-main) {
+        padding-bottom: 48px !important;
+    }
+}
+
+.swiper-main {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.swiper-thumb {
+    box-sizing: border-box;
+    padding: 10px 0;
+
+    .swiper-slide {
+        width: 25%;
+        height: 100%;
+        opacity: 0.4;
+
+        img {
+            max-height: 80px;
+            object-fit: cover;
+        }
+    }
+
+    .swiper-slide-thumb-active {
+        opacity: 1;
+    }
 }
