@@ -53,6 +53,25 @@ a.button {
     }
 }
 
+.tip {
+    position: relative;
+    background-color: #E8BA3D80;
+    padding: 16px 16px 16px 56px;
+    border-radius: 12px;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+        background-image: var(--icon-note);
+        background-size: cover;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+    }
+}
+
 /* ----------------- Forms ----------------- */
 
 form {

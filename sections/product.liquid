@@ -51,27 +51,37 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         </script>
     </div>
     <div class="product-content">
+        <script>console.log({{  product | json }})</script>
         <div class="product-info">
             <h1>{{ product.title }}</h1>
-            <p>{{ product.price | money }}</p>
-            <p>{{ product.description }}</p>
+            {%  if product.price_varies %}
+                <p class="product-price">{{ product.price_min | money }} - {{ product.price_max | money }}</p>
+            {% else %}
+                <p class="product-price">{{ product.price | money }}</p>
+            {% endif %}
+            {{ product.description }}
+            <p class="tip">Monitor water closely! Fresh flowers drink much more water than store-bought flowers.</p>
         </div>
         <div class="product-form">
+            {% assign current_variant = product.selected_or_first_available_variant %}
+
             {% form 'product', product %}
-                {% assign current_variant = product.selected_or_first_available_variant %}
-                
-                <select name="id">
-                    {% for variant in product.variants %}
-                        <option
-                            value="{{ variant.id }}"
-                            {% if variant == current_variant %}
-                                selected="selected"
-                            {% endif %}
-                        >
-                            {{ variant.title }} - {{ variant.price | money }}
-                        </option>
-                    {% endfor %}
-                </select>
+                {% if product.variants.size > 1 %}
+                    <select name="id">
+                        {% for variant in product.variants %}
+                            <option
+                                value="{{ variant.id }}"
+                                {% if variant == current_variant %}
+                                    selected="selected"
+                                {% endif %}
+                            >
+                                {{ variant.title }} - {{ variant.price | money }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="hidden" name="id" value="{{ current_variant.id }}">
+                {% endif %}
                 
                 <div class="atc-wrap">
                     <div class="quantity-wrap">
@@ -88,7 +98,7 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 </div>
 
 <div class="pdp-callout full-width">
-    <h3>TEST</h3>
+    <h3>All of our flowers are grown with love.</h3>
 </div>
 
 {% stylesheet %}
@@ -124,6 +134,14 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
     .product-info {
         margin-bottom: 32px;
+
+        h1 {
+            margin-bottom: 16px;
+        }
+
+        .product-price {
+            font-size: 18px;
+        }
     }
 
     .product-form {
