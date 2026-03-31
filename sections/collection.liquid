@@ -22,7 +22,11 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 
                 <div class="collection-product__content">
                     <h3>{{ product.title }}</h3>
-                    <p>{{ product.price | money }}</p>
+                    {%  if product.price_varies %}
+                        <p>{{ product.price_min | money }} - {{ product.price_max | money }}</p>
+                    {% else %}
+                        <p>{{ product.price | money }}</p>
+                    {% endif %}
                 </div>
             </a>
         {% endfor %}
