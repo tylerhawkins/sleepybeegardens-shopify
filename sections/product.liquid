@@ -9,9 +9,16 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
     <div class="product-images">
         <div class="swiper swiper-main product-images-swiper">
             <div class="swiper-wrapper">
-                {% for image in product.images %}
+                {% for media in product.media %}
                     <div class="swiper-slide">
-                        {% render 'image', class: 'product-image', image: image %}
+                        {% case media.media_type %}
+                            {% when 'image' %}
+                                {% render 'image', class: 'product-image', image: media %}
+                            {% when 'video' %}
+                                {{ media | video_tag: class: 'product-video', autoplay: false, loop: true, controls: true }}
+                            {% when 'external_video' %}
+                                {{ media | external_video_tag: class: 'product-video' }}
+                        {% endcase %}
                     </div>
                 {% endfor %}
             </div>
@@ -20,9 +27,13 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         </div>
         <div class="swiper swiper-thumb product-images-thumb-swiper" thumbsSlider="">
             <div class="swiper-wrapper">
-                {% for image in product.images %}
+                {% for media in product.media %}
                     <div class="swiper-slide">
-                        {% render 'image', class: 'product-image-thumb', image: image %}
+                        {% if media.media_type == 'image' %}
+                            {% render 'image', class: 'product-image-thumb', image: media %}
+                        {% else %}
+                            {% render 'image', class: 'product-image-thumb', image: media.preview_image %}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
@@ -119,8 +130,11 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         flex: 0 0 40%;
         min-width: 0; /* fixes grid blowout */
 
-        .product-image img {
+        .product-image img,
+        .product-video {
             border-radius: 24px;
+            width: 100%;
+            height: auto;
         }
 
         .product-image-thumb img {
