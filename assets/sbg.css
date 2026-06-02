@@ -217,6 +217,7 @@ form {
     background-size: cover;
     background-position: center;
     color: var(--color-white);
+    margin-top: -48px;
     margin-bottom: 48px;
 
     h1 {
