@@ -71,7 +71,9 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
                 <p class="product-price">{{ product.price | money }}</p>
             {% endif %}
             {{ product.description }}
-            <p class="tip">Monitor water closely! Fresh flowers drink much more water than store-bought flowers.</p>
+            {% if product.metafields.custom.show_water_tip == true %}
+                <p class="tip">Monitor water closely! Fresh flowers drink much more water than store-bought flowers.</p>
+            {% endif %}
         </div>
         <div class="product-form">
             {% assign current_variant = product.selected_or_first_available_variant %}
