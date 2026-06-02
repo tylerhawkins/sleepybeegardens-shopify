@@ -5,7 +5,7 @@ listing all products within a collection.
 https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
-<div class="title-wrap full-width collection" {% if section.settings.hero_image %}style="background-image: url('{{ section.settings.hero_image | image_url: width: 1920 }}')"{% endif %}>
+<div class="title-wrap full-width" {% if section.settings.hero_image %}style="background-image: url('{{ section.settings.hero_image | image_url: width: 1920 }}')"{% endif %}>
     <h1>{{ collection.title }}</h1>
 </div>
 
