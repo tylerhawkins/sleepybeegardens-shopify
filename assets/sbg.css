@@ -220,6 +220,10 @@ form {
     margin-top: -48px;
     margin-bottom: 48px;
 
+    &.collection {
+        background-image: var(--bg-collection);
+    }
+
     h1 {
         z-index: 10;
     }
