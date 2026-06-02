@@ -1,4 +1,4 @@
-<header>
+<header class="full-width">
     <div class="menu">
         {{ 'icon-menu.svg' | inline_asset_content }}
     </div>
@@ -28,30 +28,11 @@
 </header>
 
 {% stylesheet %}
-    .template-index .shopify-section-group-header-group {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 500;
-        margin-bottom: 0;
-    }
-
-    .shopify-section-group-header-group {
-        margin-top: 24px;
-        margin-bottom: 48px;
-
-        @media (max-width: 959px) {
-            margin-top: 16px;
-        }
-    }
-
     header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: var(--color-orange);
-        border-radius: 32px;
         padding: 16px 24px;
         color: var(--color-white);
 

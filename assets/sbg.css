@@ -53,6 +53,8 @@ a.button {
     }
 }
 
+/* ----------------- Tip ----------------- */
+
 .tip {
     position: relative;
     background-color: #E8BA3D80;
@@ -201,5 +203,33 @@ form {
     .swiper-slide-thumb-active {
         opacity: 1;
         cursor: default;
+    }
+}
+
+/* ----------------- Title Banner ----------------- */
+.title-wrap {
+    position: relative;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: var(--bg-collections);
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+    margin-bottom: 48px;
+
+    h1 {
+        z-index: 10;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #00000040;
     }
 }
