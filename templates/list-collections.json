@@ -11,7 +11,11 @@
   "sections": {
     "main": {
       "type": "collections",
-      "settings": {}
+      "settings": {
+        "hero_image": "shopify://shop_images/IMG_3432.jpg",
+        "grid_item_width": "collections--full",
+        "grid_gap": 32
+      }
     }
   },
   "order": [
