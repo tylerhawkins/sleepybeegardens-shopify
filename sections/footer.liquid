@@ -26,9 +26,12 @@
     .shopify-section-group-footer-group {
         position: relative;
         color: var(--color-white);
-        background-image: var(--bg-sbg);
+        background-image: var(--bg-sbg-blue);
         background-size: cover;
         background-repeat: none;
+        background-position: center center;
+        padding-top: 60px;
+        overflow: hidden;
 
         &::before {
             content: '';
@@ -38,6 +41,10 @@
             background: var(--color-white);
             -webkit-clip-path: url(#solid-waves-angle-bottom-down);
             clip-path: url(#solid-waves-angle-bottom-down);
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
         }
     }
 
