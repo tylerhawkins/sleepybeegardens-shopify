@@ -1,19 +1,8 @@
 <div class="footer-wrap full-width shopify-section">
     <footer>
         <div class="footer-content">
-            <div class="newsletter">
-                <p>Join our newsletter and stay up to date on all things SBG!</p>
-                <form method="post" class="form">
-                    <fieldset>
-                        <div class="field">
-                            <!-- <label for="newsletter-email">Email</label> -->
-                            <input type="text" name="newsletter-email" id="newsletter-email" />
-                        </div>
-                    </fieldset>
-                    <div class="actions">
-                        <button type="submit" class="button">Submit</button>
-                    </div>
-                </form>
+            <div class="logo-wrap">
+                <a href="{{ routes.root_url }}"><img src="{{ 'logo.svg' | asset_url }}" width="355" height="252" alt="{{ shop.name }}"></a>
             </div>
             <div class="footer__links">
                 <ul>
@@ -21,10 +10,11 @@
                     <li>{{ link.title | link_to: link.url }}</li>
                 {% endfor %}
                 </ul>
-            </div>
-            <div class="footer__socials">
-                <a href="https://www.instagram.com/sleepybeegardens/" target="_blank">{{ 'icon-instagram.svg' | inline_asset_content }}</a>
-                <a href="https://www.facebook.com/profile.php?id=61588009434616" target="_blank">{{ 'icon-facebook.svg' | inline_asset_content }}</a>
+
+                <div class="footer__socials">
+                    <a href="https://www.instagram.com/sleepybeegardens/" target="_blank">{{ 'icon-instagram.svg' | inline_asset_content }}</a>
+                    <a href="https://www.facebook.com/profile.php?id=61588009434616" target="_blank">{{ 'icon-facebook.svg' | inline_asset_content }}</a>
+                </div>
             </div>
         </div>
         
@@ -36,25 +26,29 @@
     .shopify-section-group-footer-group {
         position: relative;
         color: var(--color-white);
+        background-image: var(--bg-sbg);
+        background-size: cover;
+        background-repeat: none;
 
         &::before {
             content: '';
             display: block;
             grid-column: 1 / -1;
             height: 60px;
-            background: var(--color-orange);
-            -webkit-clip-path: url(#solid-waves-angle-top-down);
-            clip-path: url(#solid-waves-angle-top-down);
-            margin-left: -4px;
-        }
-
-        .footer-wrap {
-            background: var(--color-orange);
+            background: var(--color-white);
+            -webkit-clip-path: url(#solid-waves-angle-bottom-down);
+            clip-path: url(#solid-waves-angle-bottom-down);
         }
     }
 
     footer {
-        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 96px;
+        padding: 60px 24px 24px;
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
 
         svg {
             width: 2em;
@@ -67,18 +61,35 @@
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
             column-gap: 64px;
-            margin-bottom: 32px;
+
+            @media (max-width: 759px) {
+                display: block;
+                text-align: center;
+            }
         }
 
-        .newsletter {
-            flex: 1;
+        .logo-wrap {
+            @media (max-width: 759px) {
+                margin-bottom: 48px;
+            }
+
+            img {
+                width: 100%;
+                max-width: 400px;
+
+                @media (max-width: 759px) {
+                    display: inline-block;
+                }
+            }
         }
 
         .footer__links {
-            flex: 0 0 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
 
             ul {
                 list-style: none;
@@ -115,7 +126,10 @@
             display: flex;
             column-gap: 16px;
             align-items: flex-start;
-            flex: 0 0 auto;
+
+            @media (max-width: 759px) {
+                justify-content: center;
+            }
 
             a {
                 display: inline-block;
