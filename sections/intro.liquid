@@ -1,12 +1,34 @@
 <section class="intro">
-    <h2>{{ section.settings.intro_heading }}</h2>
-    <p>{{ section.settings.intro_text }}</p>
+    <div>
+        <h2>{{ section.settings.intro_heading }}</h2>
+        <p>{{ section.settings.intro_text }}</p>
+    </div>
+    <img src="{{ 'logo.svg' | asset_url }}" width="281" height="20" alt="{{ shop.name }}">
 </section>
 
 {% stylesheet %}
   section.intro {
     padding-top: 64px;
     padding-bottom: 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 959px) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 48px;
+        padding-top: 48px;
+        padding-bottom: 48px;
+
+        img {
+            order: -1;
+            width: 200px;
+        }
+    }
 
     h2 {
         margin-bottom: 0.83em;
