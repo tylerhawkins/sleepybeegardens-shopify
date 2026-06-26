@@ -1,0 +1,192 @@
+{%- assign events_blog = blogs[section.settings.blog] -%}
+
+<section class="events-wrap">
+    <h1>{{ page.title }}</h1>
+
+    <div>
+        <div id="events-calendar"></div>
+    </div>
+
+    {%- if events_blog -%}
+        {%- assign now = 'now' | date: '%s' | plus: 0 -%}
+        {%- assign has_events = false -%}
+
+        <div class="events-list">
+            {%- for article in events_blog.articles -%}
+                {%- assign event_date = article.metafields.custom.event_date.value -%}
+                {%- assign event_date_ts = event_date | date: '%s' | plus: 0 -%}
+                {%- if event_date_ts >= now -%}
+                    {%- assign has_events = true -%}
+                    <div class="event-card">
+                        {%- if article.image -%}
+                            <div class="event-card__image">
+                                {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                            </div>
+                        {%- endif -%}
+                        <div class="event-card__content">
+                            <p class="event-card__date">{{ event_date | date: '%A, %B %e, %Y' }}</p>
+                            <h2>{{ article.title }}</h2>
+                            {%- if article.excerpt -%}
+                                <p>{{ article.excerpt }}</p>
+                            {%- endif -%}
+                            <a href="{{ article.url }}" class="button">Learn More</a>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+
+        {%- unless has_events -%}
+            <p class="events-empty">No upcoming events. Check back soon!</p>
+        {%- endunless -%}
+    {%- else -%}
+        <p class="events-empty">No events blog selected. Please configure this section in the theme editor.</p>
+    {%- endif -%}
+</section>
+
+{% javascript %}
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('events-calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: [
+                {
+                    title: 'Ritualcravt Midsummer Night Market',
+                    start: '2026-06-20T22:00:00.000Z',
+                    end: '2026-06-20T15:00:00.000Z'
+                },
+                {
+                    title: 'Arvada Farmers Market',
+                    start: '2026-07-05',
+                    backgroundColor: '#698333',
+                    description: 'Start: 9am<br>End: 1:30pm'
+                },
+                {
+                    title: 'Arvada Farmers Market',
+                    start: '2026-08-09',
+                    backgroundColor: '#698333',
+                    description: 'Start: 9am<br>End: 1:30pm'
+                },
+                {
+                    title: 'Arvada Farmers Market',
+                    start: '2026-08-23',
+                    backgroundColor: '#698333',
+                    description: 'Start: 9am<br>End: 1:30pm'
+                },
+                {
+                    title: 'Arvada Farmers Market',
+                    start: '2026-09-20',
+                    backgroundColor: '#698333',
+                    description: 'Start: 9am<br>End: 1:30pm'
+                }
+            ],
+            /*eventDidMount: function(arg) { 
+                if(arg.event.extendedProps.description) {
+                    arg.el.querySelector('.fc-event-title').insertAdjacentHTML(
+                        'afterend',
+                        `<span class="fc-event-info">${arg.event.extendedProps.description}</span>`
+                    );
+                }
+            }*/
+        });
+        calendar.render();
+    });
+{% endjavascript %}
+
+{% stylesheet %}
+    .fc-event-time, .fc-event-title {
+        padding: 0 1px;
+        white-space: normal;
+    }
+
+    /* .fc-event-title-container {
+        position: relative;
+
+        .fc-event-info {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 100;
+        }
+    } */
+
+    .events-wrap {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px;
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .event-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 32px;
+            align-items: start;
+
+            @media (max-width: 759px) {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card__image {
+                border-radius: 12px;
+                overflow: hidden;
+                aspect-ratio: 4/3;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .event-card__content {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .event-card__date {
+                font-size: 14px;
+                font-weight: bold;
+                color: var(--color-green);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin: 0;
+            }
+
+            h2 {
+                margin: 0;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .events-empty {
+            color: #666;
+            font-style: italic;
+        }
+    }
+{% endstylesheet %}
+
+{% schema %}
+{
+    "name": "Events",
+    "settings": [
+        {
+            "type": "blog",
+            "id": "blog",
+            "label": "Events blog"
+        }
+    ]
+}
+{% endschema %}
