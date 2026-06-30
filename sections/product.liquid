@@ -6,6 +6,7 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
 
 <div class="product-page-wrap">
+    <h1 class="mobile-title">{{ product.title }}</h1>
     <div class="product-images">
         <div class="swiper swiper-main product-images-swiper">
             <div class="swiper-wrapper">
@@ -62,7 +63,6 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         </script>
     </div>
     <div class="product-content">
-        <script>console.log({{  product | json }})</script>
         <div class="product-info">
             <h1>{{ product.title }}</h1>
             {%  if product.price_varies %}
@@ -129,11 +129,29 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
 .product-page-wrap {
     display: flex;
-    column-gap: 64px;
+    column-gap: 48px;
+
+    @media (max-width: 759px) {
+        flex-direction: column;
+        row-gap: 16px;
+    }
+
+    .mobile-title {
+        display: none;
+        font-size: 1.5em;
+
+        @media (max-width: 759px) {
+            display: block;
+        }
+    }
+    
 
     .product-images {
-        flex: 0 0 40%;
         min-width: 0; /* fixes grid blowout */
+
+        @media (min-width: 760px) {
+            flex: 0 0 40%;
+        }
 
         .product-image img,
         .product-video {
@@ -142,8 +160,18 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
             height: auto;
         }
 
-        .product-image-thumb img {
-            border-radius: 8px;
+        .product-image-thumb {
+            @media (max-width: 759px) {
+                aspect-ratio: 3 / 2;
+            }
+
+            img {
+                border-radius: 8px;
+
+                @media (max-width: 759px) {
+                    max-height: 100%;
+                }
+            }
         }
     }
 
@@ -156,10 +184,14 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
         h1 {
             margin-bottom: 16px;
+
+            @media (max-width: 759px) {
+                display: none;
+            }
         }
 
         .product-price {
-            font-size: 18px;
+            font-size: 20px;
         }
     }
 
