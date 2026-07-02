@@ -146,4 +146,8 @@ p {
 
 .shopify-section > section {
   padding: 0 24px;
+
+  @media (max-width: 959px) {
+    padding: 0 16px;
+  }
 }
