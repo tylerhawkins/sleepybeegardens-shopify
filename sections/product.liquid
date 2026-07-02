@@ -83,7 +83,7 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 
         {% form 'product', product %}
             {% if product.variants.size > 1 %}
-                <select name="id">
+                <select name="id" id="variant-select">
                     {% for variant in product.variants %}
                         <option
                             value="{{ variant.id }}"
@@ -203,6 +203,13 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         display: flex;
         flex-direction: column;
         row-gap: 24px;
+
+        @media (min-width: 760px) {
+            #variant-select {
+                align-self: flex-start;
+                width: auto;
+            }
+        }
     }
 }
 {% endstylesheet %}
