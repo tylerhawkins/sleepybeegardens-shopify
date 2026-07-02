@@ -17,6 +17,7 @@
                             {% render 'image',
                                 image: item.image,
                                 width: 200,
+                                height: 200,
                                 crop: 'center'
                             %}
                         </a>
@@ -134,8 +135,6 @@
 
         a {
             align-self: self-start;
-            font-weight: bold;
-            text-decoration: none;
             color: var(--color-black);
 
             &:hover {
@@ -146,19 +145,9 @@
 
     .cart-item__variant {
         color: #666;
-        font-size: 14px;
-
-        span {
-            font-weight: bold;
-        }
-    }
-
-    .cart-item__price {
-        font-size: 14px;
     }
 
     .cart-item__total {
-        font-weight: bold;
         text-align: right;
 
         @media (max-width: 759px) {
@@ -217,7 +206,6 @@
         display: flex;
         justify-content: space-between;
         font-size: 20px;
-        font-weight: bold;
     }
 
     .cart-taxes {
