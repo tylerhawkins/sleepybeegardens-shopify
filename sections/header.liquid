@@ -20,7 +20,7 @@
 
             <a href="{{ routes.cart_url }}">
                 {% if cart.item_count > 0 %}
-                    <sup>{{ cart.item_count }}</sup>
+                    <span class="count">{{ cart.item_count }}</span>
                 {% endif %}
                 {{ 'icon-cart.svg' | inline_asset_content }}
             </a>
@@ -155,7 +155,7 @@
             a {
                 display: inline-block;
 
-                sup {
+                .count {
                     position: absolute;
                     left: 50%;
                     top: -3px;
@@ -163,7 +163,12 @@
                     background: var(--color-white);
                     color: var(--color-black);
                     border-radius: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     padding: 4px;
+                    aspect-ratio: 1;
+                    min-width: 24px;
                     font-size: 12px;
                     font-weight: bold;
                     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
