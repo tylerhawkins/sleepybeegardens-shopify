@@ -1,0 +1,211 @@
+<section class="gallery-wrap">
+    <h1>{{ page.title }}</h1>
+
+    {%- if section.settings.album_title != blank -%}
+        <h2 class="gallery-album-title">{{ section.settings.album_title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.album_description != blank -%}
+        <p class="gallery-album-desc">{{ section.settings.album_title }}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+        <div class="gallery-grid">
+            {%- for block in section.blocks -%}
+                {%- if block.settings.image -%}
+                    <div class="gallery-item" {{ block.shopify_attributes }}>
+                        {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.alt }}
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+    {%- else -%}
+        <p class="gallery-empty">No images yet. Add images in the theme editor.</p>
+    {%- endif -%}
+</section>
+
+{% stylesheet %}
+    .gallery-wrap {
+        padding: 0 24px;
+        margin-bottom: 48px;
+
+        h1 {
+            margin-bottom: 40px;
+        }
+    }
+
+    .gallery-album-title {
+        margin-bottom: 24px;
+    }
+
+    .shopify-section + .shopify-section .gallery-wrap h1 {
+        display: none;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+        gap: 16px;
+    }
+
+    .gallery-item {
+        overflow: hidden;
+        border-radius: 12px;
+        aspect-ratio: 1;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+    }
+
+    .gallery-empty {
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Lightbox */
+    .gallery-lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+
+        &.is-open {
+            display: block;
+        }
+
+        .gallery-lightbox__close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            svg { width: 32px; height: 32px; }
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            height: auto;
+        }
+    }
+{% endstylesheet %}
+
+<div class="gallery-lightbox" id="gallery-lightbox">
+    <div class="gallery-lightbox__close" id="gallery-close">{{ 'icon-close.svg' | inline_asset_content }}</div>
+    <div class="swiper gallery-lightbox-swiper">
+        <div class="swiper-wrapper" id="gallery-swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const items = Array.from(document.querySelectorAll('.gallery-item img'));
+        const lightbox = document.getElementById('gallery-lightbox');
+        const wrapper = document.getElementById('gallery-swiper-wrapper');
+
+        // Build swiper slides from gallery images
+        items.forEach(img => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            const fullImg = document.createElement('img');
+            fullImg.src = img.src.replace(/&width=\d+/, '&width=1600');
+            fullImg.alt = img.alt;
+            slide.appendChild(fullImg);
+            wrapper.appendChild(slide);
+        });
+
+        const swiper = new Swiper('.gallery-lightbox-swiper', {
+            loop: true,
+            keyboard: { enabled: true },
+            navigation: {
+                nextEl: '.gallery-lightbox-swiper .swiper-button-next',
+                prevEl: '.gallery-lightbox-swiper .swiper-button-prev',
+            },
+        });
+
+        function open(index) {
+            lightbox.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            swiper.slideTo(index, 0);
+        }
+
+        function close() {
+            lightbox.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+
+        items.forEach((img, i) => img.parentElement.addEventListener('click', () => open(i)));
+        document.getElementById('gallery-close').addEventListener('click', close);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('is-open') && e.key === 'Escape') close();
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Gallery",
+    "settings": [
+        {
+            "type": "text",
+            "id": "album_title",
+            "label": "Album Title"
+        },
+        {
+            "type": "text",
+            "id": "album_description",
+            "label": "Album Description"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image_picker",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "alt",
+                    "label": "Alt Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Gallery"
+        }
+    ]
+}
+{% endschema %}

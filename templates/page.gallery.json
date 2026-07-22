@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "gallery",
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
