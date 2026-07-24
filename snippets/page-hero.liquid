@@ -1,0 +1,13 @@
+{% comment %}
+  Renders a hero title banner with optional background image.
+
+  Usage:
+    {% render 'page-hero', title: page.title, image: page.metafields.custom.hero_image %}
+{% endcomment %}
+
+<div class="title-wrap full-width">
+    {%- if image -%}
+        {{ image | image_url: width: 1920 | image_tag: fetchpriority: 'high', loading: 'eager', class: 'title-wrap__bg' }}
+    {%- endif -%}
+    <h1>{{ title }}</h1>
+</div>
