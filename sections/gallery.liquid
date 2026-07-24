@@ -1,5 +1,10 @@
 <section class="gallery-wrap full-width">
-    <h1>{{ page.title }}</h1>
+    <div class="title-wrap">
+        {% if section.settings.hero_image %}
+            {{ section.settings.hero_image | image_url: width: 1920 | image_tag: fetchpriority: 'high', loading: 'eager', class: 'title-wrap__bg' }}
+        {% endif %}
+        <h1>{{ page.title }}</h1>
+    </div>
 
     {%- if section.settings.album_title != blank -%}
         <h2 class="gallery-album-title">{{ section.settings.album_title }}</h2>
@@ -98,15 +103,31 @@
 {% stylesheet %}
     .gallery-wrap {
         margin-bottom: 48px;
+    }
 
-        h1 {
-            margin-bottom: 40px;
+    .gallery-wrap .title-wrap {
+        margin-left: -24px;
+        margin-right: -24px;
+
+        @media (max-width: 959px) {
+            margin-left: -16px;
+            margin-right: -16px;
+        }
+
+        @media (max-width: 768px) {
+            height: 20vh;
+        }
+
+        @media (max-width: 479px) {
+            width: calc(100% + 32px);
+            height: auto;
+            aspect-ratio: 2/1;
         }
     }
 
     .gallery-album-title {
-        margin: 0 -24px;
-        padding: 48px 24px 24px;
+        margin: 24px -24px 88px;
+        padding: 24px;
         font-size: 48px;
         text-align: center;
         background-color: var(--color-green-3);
@@ -237,6 +258,11 @@
             "type": "text",
             "id": "album_title",
             "label": "Album Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "hero_image",
+            "label": "Hero image"
         },
         {
             "type": "text",
