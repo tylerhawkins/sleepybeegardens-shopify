@@ -1,8 +1,8 @@
 {%- assign events_blog = blogs[section.settings.blog] -%}
 
-<section class="events-wrap full-width">
-    <h1>{{ page.title }}</h1>
+{% render 'page-hero', title: page.title, image: page.metafields.custom.hero_image %}
 
+<section class="events-wrap full-width">
     <div class="events-calendar-wrap">
         <div id="events-calendar"></div>
     </div>
@@ -157,7 +157,6 @@
         --fc-today-bg-color: #E9AA6CA6;
         --fc-button-bg-color: var(--color-orange);
         --fc-button-hover-bg-color: var(--color-orange-2);
-        --fc-button-text-color: var(--color-foreground);
         --fc-button-border-color: #ddd;
         --fc-button-hover-border-color: #ddd;
         --fc-button-active-bg-color: var(--color-orange-2);
