@@ -1,0 +1,29 @@
+{%- assign hero_image = section.settings.image | default: page.metafields.custom.hero_image -%}
+{%- assign hero_title = section.settings.title | default: page.title -%}
+
+<div class="title-wrap full-width">
+    {%- if hero_image -%}
+        {{ hero_image | image_url: width: 1920 | image_tag: fetchpriority: 'high', loading: 'eager', class: 'title-wrap__bg' }}
+    {%- endif -%}
+    <h1>{{ hero_title }}</h1>
+</div>
+
+{% schema %}
+{
+    "name": "Page Hero",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "info": "Defaults to page title if left blank"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Defaults to page hero image metafield if left blank"
+        }
+    ]
+}
+{% endschema %}

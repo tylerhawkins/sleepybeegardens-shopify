@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {}
+    },
     "main": {
       "type": "page",
       "settings": {}
@@ -41,6 +45,7 @@
     }
   },
   "order": [
+    "hero",
     "main",
     "1774763094eae4398b"
   ]

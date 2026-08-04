@@ -4,9 +4,7 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/page
 {% endcomment %}
-
-{% render 'page-hero', title: page.title, image: page.metafields.custom.hero_image %}
-
+ 
 {{ page.content }}
 
 {% for block in section.blocks %}

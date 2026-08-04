@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {}
+    },
     "main": {
       "type": "gallery",
       "blocks": {
@@ -194,6 +198,7 @@
     }
   },
   "order": [
+    "hero",
     "main",
     "gallery_nKpUEK"
   ]

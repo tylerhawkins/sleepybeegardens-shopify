@@ -1,6 +1,4 @@
 <section class="gallery-wrap full-width">
-    {% render 'page-hero', title: page.title, image: page.metafields.custom.hero_image %}
-
     {%- if section.settings.album_title != blank -%}
         <h2 class="gallery-album-title">{{ section.settings.album_title }}</h2>
     {%- endif -%}
@@ -162,10 +160,6 @@
             right: 0;
             z-index: 10;
         }
-    }
-
-    .shopify-section + .shopify-section .gallery-wrap .title-wrap {
-        display: none;
     }
 
     .gallery-grid {
