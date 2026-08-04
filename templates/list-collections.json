@@ -12,7 +12,7 @@
     "main": {
       "type": "collections",
       "settings": {
-        "hero_image": "shopify://shop_images/IMG_3432.jpg",
+        "hero_image": "",
         "grid_item_width": "collections--full",
         "grid_gap": 32
       }

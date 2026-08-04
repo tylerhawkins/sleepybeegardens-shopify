@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "hero_background_image": "shopify://shop_images/hero.jpg",
+        "hero_background_image": "",
         "heading": "Locally Grown, Farm Fresh<br>Flowers & Goods",
         "primary_button_text": "Shop",
         "primary_button_link": "",
@@ -37,7 +37,7 @@
     "meet": {
       "type": "meet",
       "settings": {
-        "owner_image": "shopify://shop_images/farmer-stina.jpg",
+        "owner_image": "",
         "owner_heading": "Meet The Owner",
         "owner_text": "Hello world! My name Christina, aka Farmer Stina. I'm the founder, farmer and designer of Sleepy Bee Gardens.<br><br>Rain barrels. Utters are weathervane foal est. Mouse soybeans sweet corn hogs llamas or oink oink wind. Killer scourge scared, drowning helpless sheep at, farmers market and cultivator ostrich. In quilt yearlings, gobblers pumpkin are pork.<br><br>Pig beef, sheep rose garden sage, in pitch fork sunflower cowpies mice. In quilt yearlings, gobblers pumpkin are porky pig beef, sheep rose garden."
       }
