@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {}
+    },
+    "story": {
+      "type": "about",
+      "settings": {
+        "heading": "Our Story"
+      }
+    },
+    "values": {
+      "type": "about",
+      "settings": {
+        "heading": "Our Values"
+      }
+    },
+    "team": {
+      "type": "about",
+      "settings": {
+        "heading": "Our Team"
+      }
+    },
+    "cta": {
+      "type": "about",
+      "settings": {
+        "heading": "Contact Us"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "story",
+    "values",
+    "team",
+    "cta"
+  ]
+}
