@@ -46,7 +46,7 @@
             width: 100%;
             background-color: var(--color-white);
             clip-path: polygon(100% 100%, 0% 100%, 0% 0%);
-            margin: 24px -24px 0;
+            margin: 36px -24px 0;
         }
 
         h3 {
@@ -71,15 +71,18 @@
                     content: '';
                     display: block;
                     height: 2px;
-                    background: linear-gradient(to right, #f9ce34, #ee2a7b, #6228d7);
+                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+                    background-clip: border-box;
+                    background-size: 300% 300%;
+                    animation: gradientShift 15s ease infinite;
                     margin-top: -2px;
-                    opacity: 0;
-                    transition: opacity 0.2s ease-in-out;
+                    transform: scaleX(0);
+                    transition: transform 0.2s ease-out;
                 }
 
                 &:hover {
                     &::after {
-                        opacity: 1;
+                        transform: scaleX(1);
                     }
                 }
             }
@@ -89,8 +92,9 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             width: 100%;
-            gap: 4px;
+            gap: 8px;
             margin-top: 24px;
+            padding: 0 8px;
 
             @media (max-width: 959px) {
                 grid-template-columns: repeat(3, 1fr);
@@ -111,6 +115,7 @@
                 border-radius: 12px;
 
                 img {
+                    width: 100%;
                     object-fit: cover;
                     transition: all 0.2s ease-in-out;
                 }
