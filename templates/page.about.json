@@ -11,30 +11,36 @@
   "sections": {
     "hero": {
       "type": "page-hero",
-      "settings": {}
+      "settings": {
+        "title": ""
+      }
     },
     "story": {
       "type": "about",
       "settings": {
-        "heading": "Our Story"
+        "heading": "Our Story",
+        "content": "<p>I have loved cut flowers for as long as I can remember. As a little girl, I would save up whatever money I could to surprise my single mom with wrapped bouquets. Growing up in Pacific Beach in San Diego, there were two flower stands I admired and dreamed of owning one day.</p><p>My husband, Tyler, and I bought our first home in 2018. I decided to start a small cutting garden in our backyard. What began as a hobby quickly grew into something much bigger. In 2021, I completed a year-long internship at Blossom and Branch Farm, then tore out the sod in our front yard to make room for even more flowers.</p><p>By the summer of 2022, we realized our little city home could no longer keep up with our growing dreams for a larger family, more land, and the opportunity to build something special together.</p><p>Today, we're the proud stewards of a one-acre property in Arvada, Colorado, where we're bringing our dream to life one season at a time. Our goal is to create a thriving space for pollinators, a welcoming place where our community can gather, and a garden where everyone can slow down and appreciate the beauty nature has to offer. </p>"
       }
     },
     "values": {
       "type": "about",
       "settings": {
-        "heading": "Our Values"
+        "heading": "Our Values",
+        "content": "<p><strong>Stewardship</strong></p><p>First and foremost, we grow to provide a safe space for our pollinators, birds, and other creatures that visit the farm to thrive.</p><p><strong>Sustainability</strong></p><p>We strive to work with nature, not against it. We grow responsibly, giving back to the soil each season. Every choice is made to support a healthier environment for future generations.</p><p><strong>Quality</strong></p><p>Each bouquet, arrangement, and service is thoughtfully crafted using high-quality ingredients and careful attention to detail. Every stem is harvested at the correct stage and processed accordingly to maximize vase life and freshness.</p><p><strong>Community</strong></p><p>We value the relationships we build with our customers, fellow growers, and other local makers. Supporting our local communities and businesses is at the forefront of everything we do.</p>"
       }
     },
     "team": {
       "type": "about",
       "settings": {
-        "heading": "Our Team"
+        "heading": "Our Team",
+        "content": "<p>Christina Hawkins</p><p>Tyler Hawkins</p><p>Rey Hawkins - Farm Doggie Patrol</p><p>Dawn Jaitrong</p><p>Tammy Carroll</p>"
       }
     },
     "cta": {
       "type": "about",
       "settings": {
-        "heading": "Contact Us"
+        "heading": "Contact Us",
+        "content": "<p>If you have any questions, please don't hesitate to reach out! Send us an email at <a href=\"mailto:sleepybeegardens@gmail.com\" title=\"mailto:sleepybeegardens@gmail.com\">sleepybeegardens@gmail.com</a>, a DM on <a href=\"https://www.instagram.com/sleepybeegardens/\" target=\"_blank\" title=\"https://www.instagram.com/sleepybeegardens/\">instagram</a>, or visit the <a href=\"/pages/contact\" title=\"Contact\">Contact</a> page and we'll get back to you as soon as we can. Thank you for stopping by and supporting our little dream!</p>"
       }
     }
   },

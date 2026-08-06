@@ -1,0 +1,162 @@
+<section class="instagram full-width">
+    <h3>Follow us on Instagram<br><a href="https://www.instagram.com/sleepybeegardens/" target="_blank">@sleepybeegardens</a></h3>
+    {%- if section.blocks.size > 0 -%}
+        <div class="feed">
+            {%- for block in section.blocks limit: 12 -%}
+                <div {{ block.shopify_attributes }}>
+                    {%- if block.settings.instagram_url != blank -%}
+                        <a href="{{ block.settings.instagram_url }}" target="_blank" rel="noopener">
+                    {%- endif -%}
+                    {%- if block.settings.image -%}
+                        {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: 'Instagram post' }}
+                    {%- endif -%}
+                    {%- if block.settings.instagram_url != blank -%}
+                        </a>
+                    {%- endif -%}
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</section>
+
+{% stylesheet %}
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    section.instagram {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 48px 0 0;
+        background: var(--color-green-2);
+
+        &::after {
+            content: '';
+            height: 72px;
+            width: 100%;
+            background-color: var(--color-white);
+            clip-path: polygon(100% 100%, 0% 100%, 0% 0%);
+            margin: 36px -24px 0;
+        }
+
+        h3 {
+            text-align: center;
+
+            a {
+                font-size: 2.2em;
+                background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+                background-clip: border-box;
+                background-size: 300% 300%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+                animation: gradientShift 15s ease infinite;
+
+                @media (max-width: 759px) {
+                    font-size: 1.5em;
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 2px;
+                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+                    background-clip: border-box;
+                    background-size: 300% 300%;
+                    animation: gradientShift 15s ease infinite;
+                    margin-top: -2px;
+                    transform: scaleX(0);
+                    transition: transform 0.2s ease-out;
+                }
+
+                &:hover {
+                    &::after {
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+
+        .feed {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            width: 100%;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 0 8px;
+
+            @media (max-width: 959px) {
+                grid-template-columns: repeat(3, 1fr);
+
+                > div:nth-child(n+7) {
+                    display: none;
+                }
+            }
+
+            > div {
+                background-color: #D1D8C5;
+                aspect-ratio: 1;
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 12px;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    transition: all 0.2s ease-in-out;
+                }
+
+                &:hover {
+                    img {
+                        transform: scale(1.1); 
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+{% endstylesheet %}
+
+{% schema %}
+{
+    "name": "Instagram Feed",
+    "max_blocks": 12,
+    "blocks": [
+        {
+            "type": "post",
+            "name": "Post",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "instagram_url",
+                    "label": "Instagram post URL"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Instagram Feed"
+        }
+    ]
+}
+{% endschema %}
