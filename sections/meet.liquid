@@ -6,7 +6,7 @@
     {% endif %}
     <div class="text-wrap">
       <h2>{{ section.settings.owner_heading }}</h2>
-      <p>{{ section.settings.owner_text }}</p>
+      <p>{{ section.settings.owner_text | newline_to_br }}</p>
     </div>
 </section>
 
