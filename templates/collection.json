@@ -12,7 +12,7 @@
     "main": {
       "type": "collection",
       "settings": {
-        "hero_image": ""
+        "hero_image": "shopify://shop_images/IMG_0900.jpg"
       }
     }
   },

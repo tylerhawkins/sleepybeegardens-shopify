@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "hero_background_image": "shopify://shop_images/IMG_0486.jpg",
+        "hero_background_image": "shopify://shop_images/hero.jpg",
         "heading": "Locally Grown, Farm Fresh<br>Flowers & Goods",
         "primary_button_text": "Shop",
         "primary_button_link": "shopify://collections",
@@ -37,13 +37,113 @@
     "meet": {
       "type": "meet",
       "settings": {
-        "owner_image": "shopify://shop_images/IMG_3499.jpg",
+        "owner_image": "shopify://shop_images/farmer-stina.jpg",
         "owner_heading": "Meet The Owner",
         "owner_text": "<p>Hi! My name is Christina, aka Farmer Stina. I'm the founder, farmer, and designer behind Sleepy Bee Gardens.</p><p>I've always had a deep passion for local farms, dreaming one day of having my own. In college I helped small local farms in Santa Barbara, CA get their products to local farmers markets and to strategically partner with UCSB to supply local organic food to the dining commons. Now I'm passionate about bringing local, seasonal, and organic cut flowers to my CO community. Flowers have always been my first love, dreaming of retiring and owning a cute little florist stand one day.</p><p>I supply fresh flower products like wrapped bouquets and custom arrangements as well as dried flower products like dried bouquets, wreaths, and smudge sticks in the off-season. I do garden consulting and events like elopements, weddings, and showers. If you're looking for sustainable and organic options - you've come to the right place. We are 100% flower foam/pesticide/herbicide/insecticide FREE.</p>"
       }
     },
     "instagram": {
       "type": "instagram",
+      "blocks": {
+        "post_d8RiJr": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig1.jpg",
+            "instagram_url": "https://www.instagram.com/p/DTRMSnYDSmJ/"
+          }
+        },
+        "post_fGfV3Q": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig2.jpg",
+            "instagram_url": "https://www.instagram.com/p/DTMBkNpjbTr/"
+          }
+        },
+        "post_rCThKG": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig3.jpg",
+            "instagram_url": "https://www.instagram.com/p/DbRBXenxOij/"
+          }
+        },
+        "post_XPkikq": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig4.jpg",
+            "instagram_url": "https://www.instagram.com/p/DarSrPaDRT5/"
+          }
+        },
+        "post_w3hdge": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig5.jpg",
+            "instagram_url": "https://www.instagram.com/p/DZ0lCH9MySv/"
+          }
+        },
+        "post_bDTecG": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig6.jpg",
+            "instagram_url": "https://www.instagram.com/p/DaRjsF9tCSp/"
+          }
+        },
+        "post_JxnQG6": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig7.jpg",
+            "instagram_url": "https://www.instagram.com/p/DaOy3rrNWFr/"
+          }
+        },
+        "post_px4gXg": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig8.jpg",
+            "instagram_url": "https://www.instagram.com/p/DZxsd8qkZjL/"
+          }
+        },
+        "post_ewkjJ8": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig9.jpg",
+            "instagram_url": "https://www.instagram.com/p/DZbLxzTNB18/"
+          }
+        },
+        "post_Gd4BE4": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig10.jpg",
+            "instagram_url": "https://www.instagram.com/p/DZQWDFHslhc/"
+          }
+        },
+        "post_C3xPVP": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig11.jpg",
+            "instagram_url": "https://www.instagram.com/p/DY5b6GsmEJj/"
+          }
+        },
+        "post_fjhJ8Y": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ig12.jpg",
+            "instagram_url": "https://www.instagram.com/p/DYivRGtjLHY/"
+          }
+        }
+      },
+      "block_order": [
+        "post_d8RiJr",
+        "post_fGfV3Q",
+        "post_rCThKG",
+        "post_XPkikq",
+        "post_w3hdge",
+        "post_bDTecG",
+        "post_JxnQG6",
+        "post_px4gXg",
+        "post_ewkjJ8",
+        "post_Gd4BE4",
+        "post_C3xPVP",
+        "post_fjhJ8Y"
+      ],
       "settings": {}
     }
   },
