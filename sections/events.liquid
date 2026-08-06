@@ -6,14 +6,16 @@
     </div>
 
     {%- if events_blog -%}
+        {%- assign now = 'now' | date: '%s' | plus: 0 -%}
         {%- assign has_events = false -%}
         {%- assign sorted_events = events_blog.articles | reverse -%}
 
-        <div class="events-list">
+        <div class="events-list upcoming">
+            <h2>Upcoming Events</h2>
             {%- for article in sorted_events -%}
                 {%- assign event_date = article.metafields.custom.event_date.value -%}
                 {%- assign event_date_ts = event_date | date: '%s' | plus: 0 -%}
-                {%- if event_date_ts -%}
+                {%- if event_date_ts  >= now -%}
                     {%- assign has_events = true -%}
                     <div class="event-card" data-date="{{ event_date | date: '%s' }}">
                         {%- if article.image -%}
@@ -36,11 +38,40 @@
                     </div>
                 {%- endif -%}
             {%- endfor -%}
+
+            {%- unless has_events -%}
+                <p class="events-empty">No upcoming events. Check back soon!</p>
+            {%- endunless -%}
         </div>
 
-        {%- unless has_events -%}
-            <p class="events-empty">No upcoming events. Check back soon!</p>
-        {%- endunless -%}
+        <div class="events-list past">
+            <h2>Past Events</h2>
+            {%- for article in events_blog.articles -%}
+                {%- assign event_date = article.metafields.custom.event_date.value -%}
+                {%- assign event_date_ts = event_date | date: '%s' | plus: 0 -%}
+                {%- if event_date_ts < now -%}
+                    <div class="event-card" data-date="{{ event_date | date: '%s' }}">
+                        {%- if article.image -%}
+                            <div class="event-card__image">
+                                {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                            </div>
+                        {%- endif -%}
+                        <div class="event-card__content">
+                            <div class="event-card__title">
+                                <p class="event-card__date">{{ event_date | date: '%A, %B %e, %Y' }}</p>
+                                <h2>{{ article.title }}</h2>
+                            </div>
+                            {%- if article.excerpt.size > 0 -%}
+                                <p>{{ article.excerpt }}</p>
+                            {%- endif -%}
+                            {%- if article.content -%}
+                                <div class="event-card__body">{{ article.content }}</div>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
     {%- endif -%}
 </section>
 
@@ -62,13 +93,14 @@
 {% javascript %}
     document.addEventListener('DOMContentLoaded', function() {
         // Sort event cards by data-date ascending
-        const list = document.querySelector('.events-list');
-        if (list) {
-            const cards = Array.from(list.querySelectorAll('.event-card'));
-            cards.sort((a, b) => a.dataset.date - b.dataset.date);
-            cards.forEach(card => list.appendChild(card));
-            list.style.visibility = 'visible';
-        }
+        [...document.querySelectorAll('.events-list')].forEach(list => {
+            if (list) {
+                const cards = Array.from(list.querySelectorAll('.event-card'));
+                cards.sort((a, b) => a.dataset.date - b.dataset.date);
+                cards.forEach(card => list.appendChild(card));
+                list.style.visibility = 'visible';
+            }
+        });
 
         // Init calendar
         if (window.innerWidth >= 1280) {
@@ -172,6 +204,10 @@
         flex-direction: column;
         gap: 40px;
         visibility: hidden;
+
+        &.upcoming {
+            margin-bottom: 80px;
+        }
     }
 
     .event-card {
