@@ -28,9 +28,6 @@
                                 <p class="event-card__date">{{ event_date | date: '%A, %B %e, %Y' }}</p>
                                 <h2>{{ article.title }}</h2>
                             </div>
-                            {%- if article.excerpt.size > 0 -%}
-                                <p>{{ article.excerpt }}</p>
-                            {%- endif -%}
                             {%- if article.content -%}
                                 <div class="event-card__body">{{ article.content }}</div>
                             {%- endif -%}
@@ -61,9 +58,6 @@
                                 <p class="event-card__date">{{ event_date | date: '%A, %B %e, %Y' }}</p>
                                 <h2>{{ article.title }}</h2>
                             </div>
-                            {%- if article.excerpt.size > 0 -%}
-                                <p>{{ article.excerpt }}</p>
-                            {%- endif -%}
                             {%- if article.content -%}
                                 <div class="event-card__body">{{ article.content }}</div>
                             {%- endif -%}
@@ -83,7 +77,7 @@
                 "title": {{ article.title | json }},
                 "start": {{ event_date | json }},
                 "url": {{ article.url | json }},
-                "description": {{ article.content | json }},
+                "excerpt": {{ article.excerpt | json }},
                 "backgroundColor": "#698333"
             }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
@@ -110,10 +104,10 @@
                 height: 'auto',
                 events: window.shopifyEvents,
                 eventDidMount: function(arg) {
-                    if(arg.event.extendedProps.description) {
+                    if(arg.event.extendedProps.excerpt) {
                         arg.el.querySelector('.fc-event-title-container').insertAdjacentHTML(
                             'afterend',
-                            `<div class="fc-event-info">${arg.event.extendedProps.description}</div>`
+                            `<div class="fc-event-info">${arg.event.extendedProps.excerpt}</div>`
                         );
                     }
                 },
