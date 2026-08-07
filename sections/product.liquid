@@ -11,7 +11,7 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         <div class="swiper swiper-main product-images-swiper">
             <div class="swiper-wrapper">
                 {% for media in product.media %}
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-media-id="{{ media.id }}">
                         {% case media.media_type %}
                             {% when 'image' %}
                                 {% render 'image', class: 'product-image', image: media %}
@@ -63,13 +63,11 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
         </script>
     </div>
     <div class="product-content">
+        {% assign current_variant = product.selected_or_first_available_variant %}
+
         <h1>{{ product.title }}</h1>
         
-        {%  if product.price_varies %}
-            <p class="product-price">{{ product.price_min | money }} - {{ product.price_max | money }}</p>
-        {% else %}
-            <p class="product-price">{{ product.price | money }}</p>
-        {% endif %}
+        <p class="product-price" id="product-price">{{ current_variant.price | money }}</p>
 
         <div class="product-description">
             {{ product.description }}
@@ -79,22 +77,22 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
             <p class="tip">Monitor water closely! Fresh flowers drink much more water than store-bought flowers.</p>
         {% endif %}
 
-        {% assign current_variant = product.selected_or_first_available_variant %}
-
         {% form 'product', product %}
             {% if product.variants.size > 1 %}
-                <select name="id" id="variant-select">
+                <input type="hidden" name="id" id="variant-id" value="{{ current_variant.id }}">
+                <div class="variant-tiles">
                     {% for variant in product.variants %}
-                        <option
-                            value="{{ variant.id }}"
-                            {% if variant == current_variant %}
-                                selected="selected"
-                            {% endif %}
+                        <button
+                            type="button"
+                            class="variant-tile {% if variant == current_variant %}is-selected{% endif %}"
+                            data-variant-id="{{ variant.id }}"
+                            data-media-id="{{ variant.featured_media.id }}"
+                            data-price="{{ variant.price | money }}"
                         >
-                            {{ variant.title }} - {{ variant.price | money }}
-                        </option>
+                            {{ variant.title }}
+                        </button>
                     {% endfor %}
-                </select>
+                </div>
             {% else %}
                 <input type="hidden" name="id" value="{{ current_variant.id }}">
             {% endif %}
@@ -109,6 +107,35 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
                 {% comment %} {{ form | payment_button }} {% endcomment %}
             </div>
         {% endform %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var tiles = document.querySelectorAll('.variant-tile');
+                var variantInput = document.getElementById('variant-id');
+                var priceEl = document.getElementById('product-price');
+
+                tiles.forEach(function(tile) {
+                    tile.addEventListener('click', function() {
+                        // Update selected state
+                        tiles.forEach(t => t.classList.remove('is-selected'));
+                        this.classList.add('is-selected');
+
+                        // Update hidden input
+                        if (variantInput) variantInput.value = this.dataset.variantId;
+
+                        // Update price
+                        if (priceEl && this.dataset.price) priceEl.textContent = this.dataset.price;
+
+                        // Slide to variant media
+                        var mediaId = this.dataset.mediaId;
+                        if (mediaId) {
+                            var slides = document.querySelectorAll('.product-images-swiper .swiper-slide[data-media-id]');
+                            var index = Array.from(slides).findIndex(s => s.dataset.mediaId === mediaId);
+                            if (index !== -1) swiper.slideToLoop(index);
+                        }
+                    });
+                });
+            });
+        </script>
     </div>
 </div>
 
@@ -209,6 +236,43 @@ https://shopify.dev/docs/storefronts/themes/architecture/templates/product
                 align-self: flex-start;
                 width: auto;
             }
+        }
+    }
+
+    .variant-tiles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .variant-tile {
+        padding: 8px 16px;
+        border: 2px solid var(--color-blue);
+        border-radius: 24px;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        color: var(--color-blue);
+
+        &:hover {
+            border-color: var(--color-blue);
+            color: var(--color-blue);
+        }
+
+        &:not(.is-selected) {
+            opacity: 0.8;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        &.is-selected {
+            border-color: var(--color-blue);
+            background: var(--color-blue);
+            color: var(--color-white);
         }
     }
 }
