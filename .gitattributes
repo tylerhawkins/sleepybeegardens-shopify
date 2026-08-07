@@ -1,1 +1,5 @@
 *.json linguist-language=jsonc
+
+# Keep store-specific content on target branch during merges
+templates/*.json merge=ours
+config/settings_data.json merge=ours
